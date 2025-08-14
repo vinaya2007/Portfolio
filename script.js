@@ -55,22 +55,24 @@ function validatePhone() {
 }
 
 function validateEmail() {
-    var email = document.getElementById('Contact-email').value;
+    var email = document.getElementById('Contact-email').value.trim();
 
     if (email.length === 0) {
         emailError.innerHTML = 'Email is required';
         return false;
     }
 
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!email.match(emailPattern)) {
+    if (!emailPattern.test(email)) {
         emailError.innerHTML = 'Email is invalid';
         return false;
     }
 
+    emailError.innerHTML = '';
     return true;
 }
+
 
 function validateMessage() {
     var message = document.getElementById('Contact-message').value.trim();
